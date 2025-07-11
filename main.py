@@ -15,7 +15,7 @@ def main():
             break
 
 def print_login_menu():
-    print("Options")
+    print("\nOptions")
     print("1 - Login")
     print("2 - Exit the app")
 
@@ -23,19 +23,18 @@ def login_user():
     """
     Asks for user and password, if a valid nickname and password are given returns the user.
     """
-    print("\nLogin in")
+    print("\nLogging in")
     username = input("User: ")
     password = input("Password: ")
     if username and username in users_database:
         if password == users_database[username].password:
-            print("Logged in \n")
+            print("Logged in")
             return users_database[username]
         else:
             print("Incorrect password, please try again.")
 
     else:
         print(f"{username} is not a registered user, please try again.")
-
 
 if __name__ == "__main__":
     main()
