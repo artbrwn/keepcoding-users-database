@@ -1,4 +1,6 @@
 from databases import products_database
+from utils import select_valid_option
+
 
 class User:
     def __init__(self, user, password):
@@ -7,20 +9,50 @@ class User:
 
 class Admin(User):
     def menu(self):
-        print(f"You are logged as {self.user}, admin.")
-        print("Options:")
-        print("1 - View list of users")
-        print("2 - Sign up a new user")
-        print("3 - Remove an existing user")
-        print("4 - Log out")
+        while True:
+            print(f"You are logged as {self.user}, admin.")
+            print("Options:")
+            print("1 - View list of users")
+            print("2 - Sign up a new user")
+            print("3 - Remove an existing user")
+            print("4 - Log out")
+
+            option = select_valid_option("What do you want to do?: ", "1234")
+
+            if option == "1":
+                self.view_list_of_users()
+            elif option == "2":
+                pass
+            elif option == "3":
+                pass
+            elif option == "4":
+                print("You logged out. \n")
+                break
+
+    def view_list_of_users(self):
+        print("Users:")
+        for user in users_database.values():
+            print(f"{user.user}")
 
 class Client(User):
+
     def menu(self):
-        print(f"You are logged as {self.user}, client.")
-        print("Options:")
-        print("1 - Show products")
-        print("2 - Buy a product")
-        print("3 - Log out")
+        while True:
+            print(f"You are logged as {self.user}, client.")
+            print("Options:")
+            print("1 - Show products")
+            print("2 - Buy a product")
+            print("3 - Log out")
+
+            option = select_valid_option("What do you want to do?: ", "123")
+
+            if option == "1":
+                self.list_products()
+            elif option == "2":
+                pass
+            elif option == "3":
+                print("You logged out. \n")
+                break
 
     def list_products(self):
         print("List of products:")
@@ -28,8 +60,10 @@ class Client(User):
         print("-" * 50)
 
         for product_id, product_info in products_database.items():
-            print(f"{str(product_id):^3} | {product_info['name']:^10} | {product_info['size']:^6} | {str(product_info['stock']):^11} | {str(product_info['price']):^7}")
+            print(f"{str(product_id):^3} | {product_info['name']:^10} | {product_info['size']:^6} | {str(product_info['stock']):^11} | {str(product_info['price']):^7}€")
+        print("\n")
+    
+    def buy():
+        pass
 
-
-
-
+users_database = {"admin": Admin("admin", "admin1234"), "client1": Client("client1", "123456")}
