@@ -1,5 +1,7 @@
 from users_classes import Admin, Client
+
 users_database = {"admin": Admin("admin", "admin1234"), "client1": Client("client1", "123456")}
+
 
 def main():
     print_login_menu()
