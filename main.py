@@ -24,8 +24,8 @@ def login_user():
     Asks for user and password, if a valid nickname and password are given returns the user.
     """
     print("\nLogging in")
-    username = input("User: ")
-    password = input("Password: ")
+    username = input("User: ").strip()
+    password = input("Password: ").strip()
     if username and username in users_database:
         if password == users_database[username].password:
             print("Logged in")
